@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.cfish.openapi.sdk.test.util.db.mapper.OpenApiSdkTestLogMapper">
+    <resultMap id="BaseResultMap" type="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestLog">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="method" jdbcType="VARCHAR" property="method"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="original_sdk" jdbcType="VARCHAR" property="originalSdk"/>
+        <result column="original_yapi" jdbcType="VARCHAR" property="originalYapi"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+      id, `method`, ip, original_sdk, original_yapi, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from open_api_sdk_test_log
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+      delete from open_api_sdk_test_log
+      where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestLog">
+      insert into open_api_sdk_test_log (id, `method`, ip, original_sdk, original_yapi, create_time)
+      values
+      (#{id,jdbcType=BIGINT}, #{method,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{originalSdk,jdbcType=VARCHAR}, #{originalYapi,jdbcType=VARCHAR}, now())
+    </insert>
+    <insert id="insertSelective" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestLog">
+        insert into open_api_sdk_test_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="method != null">
+                `method`,
+            </if>
+            <if test="ip != null">
+                ip,
+            </if>
+            <if test="originalSdk != null">
+                original_sdk,
+            </if>
+            <if test="originalYapi != null">
+                original_yapi,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="method != null">
+                #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="originalSdk != null">
+                #{originalSdk,jdbcType=VARCHAR},
+            </if>
+            <if test="originalYapi != null">
+                #{originalYapi,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestLog">
+        update open_api_sdk_test_log
+        <set>
+            <if test="method != null">
+                `method` = #{method,jdbcType=VARCHAR},
+            </if>
+            <if test="ip != null">
+                ip = #{ip,jdbcType=VARCHAR},
+            </if>
+            <if test="originalSdk != null">
+                original_sdk = #{originalSdk,jdbcType=VARCHAR},
+            </if>
+            <if test="originalYapi != null">
+                original_yapi = #{originalYapi,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestLog">
+      update open_api_sdk_test_log
+      set `method` = #{method,jdbcType=VARCHAR},
+        ip = #{ip,jdbcType=VARCHAR},
+        original_sdk = #{originalSdk,jdbcType=VARCHAR},
+        original_yapi = #{originalYapi,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+      where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

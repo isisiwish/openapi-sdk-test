@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="openapi-sdk-order-test-suite">
+    <test name="test.dangdang.shop">
+        <classes>
+            <class name="top.cfish.openapi.sdk.test.shop.ShopCategoryGetTest">
+                <methods>
+                    <include name="test1"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="top.cfish.openapi.sdk.test.util.report.ReporterListenerImpl"/>
+    </listeners>
+</suite>

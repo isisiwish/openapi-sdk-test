@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.cfish.openapi.sdk.test.util.db.mapper.OpenApiSdkTestCaseIdMapper">
+  <resultMap id="BaseResultMap" type="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestCaseId">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="case_id" jdbcType="INTEGER" property="caseId" />
+    <result column="case_desc" jdbcType="VARCHAR" property="caseDesc" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, case_id, case_desc, ip, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from open_api_sdk_test_case_id
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from open_api_sdk_test_case_id
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestCaseId" useGeneratedKeys="true">
+    insert into open_api_sdk_test_case_id (case_id, case_desc, ip,
+      create_time, update_time)
+    values (#{caseId,jdbcType=INTEGER}, #{caseDesc,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      now(), now())
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestCaseId" useGeneratedKeys="true">
+    insert into open_api_sdk_test_case_id
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        case_id,
+      </if>
+      <if test="caseDesc != null">
+        case_desc,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseId != null">
+        #{caseId,jdbcType=INTEGER},
+      </if>
+      <if test="caseDesc != null">
+        #{caseDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestCaseId">
+    update open_api_sdk_test_case_id
+    <set>
+      <if test="caseId != null">
+        case_id = #{caseId,jdbcType=INTEGER},
+      </if>
+      <if test="caseDesc != null">
+        case_desc = #{caseDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestCaseId">
+    update open_api_sdk_test_case_id
+    set case_id = #{caseId,jdbcType=INTEGER},
+      case_desc = #{caseDesc,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByCaseIdAndIp" parameterType="top.cfish.openapi.sdk.test.util.db.entity.OpenApiSdkTestCaseId">
+    update open_api_sdk_test_case_id
+    <set>
+      <if test="caseDesc != null">
+        case_desc = #{caseDesc,jdbcType=VARCHAR},
+      </if>
+      update_time = now(),
+    </set>
+    where case_id = #{caseId,jdbcType=INTEGER}
+    and ip = #{ip, jdbcType=VARCHAR}
+  </update>
+  <select id="existsByCaseIdAndIp" resultType="int">
+    SELECT count(1)
+    FROM open_api_sdk_test_case_id
+    WHERE case_id = #{caseId,jdbcType=INTEGER}
+    AND ip = #{ip,jdbcType=VARCHAR}
+  </select>
+</mapper>
