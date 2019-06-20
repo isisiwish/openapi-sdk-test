@@ -1,0 +1,57 @@
+# key file
+
+# test file
+logs/
+test-output/
+*.log
+*.logs
+
+# java ignore
+target/
+*.class
+*.jar
+*.war
+*.zip
+*.tar
+*.gz
+
+# idea ignore
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# VS Code
+.vscode/
+
+# spring tool suite ignore
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# temp ignore
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# private file
+file/
